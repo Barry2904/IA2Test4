@@ -1,2 +1,2 @@
 language = "c"
-run = "pwd"
+run = "echo hello"

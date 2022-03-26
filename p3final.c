@@ -1,48 +1,67 @@
-/*
-Write a program find whether a given number is a prime number.
-int input_number();
-int is_prime(int n);
-void output(int n, int is_prime);
-*/
+#include<stdio.h>
+#include<math.h>
 
-#include <stdio.h>
-#include <math.h>
-int input()
+struct camel
 {
-  int n;
-  printf("Enter the number\n");
-  scanf("%d",&n);
-  return n;
+  float radius,height,length,weight;
+  int mood;
+};
+typedef struct camel Camel;
+Camel input()
+{
+  Camel x;
+  printf("Enter necessary info:-\n");
+  printf("Enter the radius:- ");
+  scanf("%f",&x.radius);
+  printf("Enter the height:- ");
+  scanf("%f",&x.height);
+  printf("Enter the length:- ");
+  scanf("%f",&x.length);
+  return x;
 }
-
-int isprime(int n)
+void find_weight(Camel *c)
 {
-  if (n==0 || n==1) {
-    return 0
-  }
-  if (n==2) {
-    return 1;
-  }
-  for(int i= 2; i<= sqrt(n);i++)
+  c->weight=3.14*pow(c->radius,3)*sqrt(c->height*c->length);
+}
+void find_mood(Camel *c)
+{
+  // SICK
+  if(c->radius < c->height && c->radius < c->length)
   {
-    if(n%i==0)
-      return 0;
+    c->mood=0;
   }
-  return 1;
+  // HAPPY
+  else if(c->height < c->radius && c->height < c->length)
+  {
+    c->mood=1;
+  }
+  // TENSE
+  else if(c->length < c->height && c->length < c->radius)
+  {
+    c->mood=2;
+  }
 }
-void output(int n, int isp)
+void output(Camel c)
 {
-  if(isp == 0)
-    printf("%d is not a prime number\n",n);
-  else
-    printf("%d is a prime number\n",n)
+  if(c.mood==0)
+  {
+    printf("The camel is Sick.");
+  }
+  else if(c.mood==1)
+  {
+    printf("The camel is Happy.");
+  }
+  else if(c.mood==2)
+  {
+    printf("The camel is Tense.");
+  }
 }
-
 int main()
 {
-  int n = input();
-  int isp = isprime(n);
-  output(n,isp);
+  Camel c;
+  c=input();
+  find_weight(&c);
+  find_mood(&c);
+  output(c);
   return 0;
-  }
 }

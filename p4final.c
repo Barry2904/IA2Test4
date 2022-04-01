@@ -1,45 +1,47 @@
-/*
-
-Write a program to find nth number in fibonacci sequence.
-Fibonacci sequence consists of 0,1,1,2,3,5,8,13,21........
-int input();
-int find_fibo(int n);
-void output(int n, int fibo);
-
-*/
-
-#include <stdio.h>
-
-int input()
+#include<stdio.h>
+#include<math.h>
+float input()
 {
-  int n;
-  printf("Enter the number\n");
-  scanf("%d",&n);
-  return n;
+  float x;
+  printf("Enter the value of x\n");
+  scanf("%f",&x);
+  return x;
 }
-int find_fibo(int n)
+int fact(int x)
 {
-  int fibo=0;
-  int a=0;
-  int b=1;
-  for(int i=0;i<n;i++) {
-    fibo = a;
-    a = b;
-    b = fibo + b;
+  int factorial=1,i;
+  for(i=2;i<=x;i++)
+  {
+    factorial=factorial*(i);
   }
-  return fibo;
+  return factorial;
 }
-
-
-void output(int n, int fibo)
+float find_borga(float x,int y)
 {
-  printf("the %dth fibonacci number is %d\n", n, fibo);
+  int i,j;
+  float ans=1,term;
+  // for(i=1,j=1;term<0.001;i++)
+  // for(i=1,j=1;i>0;i++)
+  printf("%d + ",1);
+  for(i=1,j=1;i<=y;i++)
+  {
+    j=j+2;
+    term=pow(x,i)/fact(j);
+    ans=ans+term;
+    printf("%.4f + ",term);
+  }
+  return ans;
 }
-
+void output(float borga)
+{
+  printf("= %.4f",borga);
+}
 int main()
 {
-  int n = input();
-  int fibo = find_fibo(n);
-  output(n, fibo);
+  float n;
+  float borga;
+  n=input();
+  borga=find_borga(n,3);
+  output(borga);
   return 0;
 }
